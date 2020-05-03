@@ -1,0 +1,40 @@
+.logo-box {
+  text-align: center;
+}
+
+.logo {
+  padding: 1vh;
+  width: 8vh;
+  min-width: 50px;
+  animation: rotateRight 3s ease-out;
+  backface-visibility: hidden;
+
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  &:active{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+
+@keyframes rotateRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotate(-50deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.navbar {
+  background-color: rgb(253, 245, 245);
+  opacity: 0.79;
+}
+

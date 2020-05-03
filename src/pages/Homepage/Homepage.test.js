@@ -6,15 +6,17 @@ import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 
-describe("Testing App component", () => {
+describe("Testing Homepage component", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<App />);
   })
 
-  test('render homepage', () => {
-    expect(wrapper.find('div.homepage'));
+  test('render navbar', () => {
+    expect(wrapper.find('div.navbar'));
   });
-  
-})
-
+  test('render button', () => {
+    expect(wrapper.find('div.button'));
+  });
+    
+}
