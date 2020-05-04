@@ -1,3 +1,11 @@
+FAST-FOOD-APP
+
+This app aims to provide the following features:
+- User authentication - sign in and sign up
+- User can select items and add to cart
+- User can make payment using stripe in test mode
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
