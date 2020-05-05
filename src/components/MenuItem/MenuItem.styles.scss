@@ -9,11 +9,15 @@
   background-position: center;
   background-size: cover;
   border-radius: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 h1 {
   background-color: rgb(245, 230, 230);
-  opacity: 0.73;
+  opacity: 0.85;
   border-radius: 20px 20px 0 0;
   font-size: 25px;
 }
