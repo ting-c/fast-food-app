@@ -59,7 +59,7 @@ class SignUp extends React.Component {
 				<h2>Sign Up</h2>
 
 				<form onSubmit={this.handleSubmit}>
-					<label>Name</label>
+					<label>Full Name</label>
 					<input
 						type="name"
 						name="name"

@@ -3,6 +3,7 @@ import './SignIn.styles.scss';
 
 import { auth, provider, firestore } from '../../firebase/firebase';
 
+
 class SignIn extends React.Component {
 	constructor(props) {
 		super(props);
@@ -46,13 +47,11 @@ class SignIn extends React.Component {
 				});
 		} else {
 			const { email, password } = this.state;
-			auth
-				.signInWithEmailAndPassword((email, password))
+			auth.signInWithEmailAndPassword(email, password)
+				.then(console.log('login success'))
 				.catch((error) => {
 					alert(`There is an error with the login: ${error.message}`);
-					return;
 				})
-				.then(alert("login success"));
 		}
 	};
 

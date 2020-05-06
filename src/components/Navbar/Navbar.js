@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.styles.scss';
 
-import Logo from '../../img/Logo.png'
+import Logo from '../../img/Logo.png';
 
 const Navbar = () => (
   <div className='navbar'>
@@ -11,5 +11,6 @@ const Navbar = () => (
 
   </div>
 )
+
 
 export default Navbar;
