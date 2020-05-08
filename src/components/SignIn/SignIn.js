@@ -2,7 +2,8 @@ import React from 'react';
 import './SignIn.styles.scss';
 
 import { auth, provider, firestore } from '../../firebase/firebase';
-
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/actions/userActions';
 
 class SignIn extends React.Component {
 	constructor(props) {
@@ -15,43 +16,45 @@ class SignIn extends React.Component {
 	}
 
 	storeUserDetails = () => {
-		auth.onAuthStateChanged((user) => {
-			if (user) {
-				// user is signed in
-				const { uid, displayName, email } = user;
-				// create a single document using the uid
-				firestore.collection("users").doc(uid).set({
+		// get the current user by setting an observer on the Auth object
+		auth.onAuthStateChanged( user => {
+			if (!user) return;
+			const { uid, displayName, email } = user;
+
+			const userRef = firestore.collection('users').doc(uid);
+			userRef.get().then( user => {
+				if (!user.exists) {
+					// create a user doc if user doesn't exists
+					userRef.set({
 						name: displayName,
-						email: email,
-					})
-					.catch((error) => {
-						console.error("error: ", error);
+						email
 					});
-			} else {
-				// user is signed out
-			}
-		});
+				}
+			})
+		})
 	};
 
-	handleSubmit = (event) => {
+	handleSubmit = (event, props) => {
 		event.preventDefault();
 		const isGoogleSignIn = event.target.value === "Sign in with google";
 		if (isGoogleSignIn) {
 			auth
 				.signInWithPopup(provider)
-				.then((result) => {
-          this.storeUserDetails();
-				})
 				.catch((error) => {
 					alert(`There is an error with the login: ${error.message}`);
-				});
+				})
+				.then(() => {
+					this.storeUserDetails();
+				})
+				.then(this.props.setCurrentUser(auth.currentUser));
 		} else {
 			const { email, password } = this.state;
-			auth.signInWithEmailAndPassword(email, password)
-				.then(console.log('login success'))
+			auth
+				.signInWithEmailAndPassword(email, password)
 				.catch((error) => {
 					alert(`There is an error with the login: ${error.message}`);
 				})
+				.then(this.props.setCurrentUser(auth.currentUser))
 		}
 	};
 
@@ -98,4 +101,12 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+
+
+const mapDispatchToProps = dispatch => (
+	{ //action creators
+		setCurrentUser: user => dispatch(setCurrentUser(user))
+	}
+)
+
+export default connect(null, mapDispatchToProps)(SignIn);
