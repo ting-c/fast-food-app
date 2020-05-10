@@ -4,9 +4,3 @@ export const setCurrentUser = user => (
     payload: user
   }
 )
-
-export const signOutUser = () => (
-  {
-    type: 'SIGN_OUT_USER'
-  }
-)

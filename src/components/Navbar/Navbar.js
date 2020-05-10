@@ -40,5 +40,8 @@ const NavBar = ({ currentUser }) => {
   )
 };
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
 
-export default connect()(NavBar);
+export default connect(mapStateToProps)(NavBar);
