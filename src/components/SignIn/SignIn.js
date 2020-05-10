@@ -1,16 +1,14 @@
 import React from 'react';
 import './SignIn.styles.scss';
 
-import { auth, firestore } from '../../firebase/firebase';
-import { connect } from 'react-redux';
-import { setCurrentUser } from '../../redux/actions/userActions';
+import { auth } from '../../firebase/firebase';
 import { signInWithGoogle } from '../../firebase/firebase';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 class SignIn extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 
 		this.state = {
 			email: "",
@@ -18,27 +16,23 @@ class SignIn extends React.Component {
 		};
 	}
 
-	storeUserDetails = () => {
-		// get the current user by setting an observer on the Auth object
-		auth.onAuthStateChanged( user => {
-			if (!user) return;
-			const { uid, displayName, email } = user;
+	handleSubmit = async event => {
+		event.preventDefault();
+		const { email, password } = this.state;
 
-			const userRef = firestore.collection('users').doc(uid);
-			userRef.get().then( user => {
-				if (!user.exists) {
-					// create a user doc if user doesn't exists
-					userRef.set({
-						name: displayName,
-						email
-					});
-				}
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+			this.setState({
+				email: '',
+				password: ''
 			})
-		})
-	};
-
+		} catch (error) {
+			console.log(error);
+		}
+		
+	}
 	
-	handleChange = (event) => {
+	handleChange = event => {
 		const { name, value } = event.target;
 		this.setState({
 			[name]: value, //computed property names
@@ -49,14 +43,14 @@ class SignIn extends React.Component {
 		return (
 			<Form>
 				<Form.Group controlId="signInEmail">
-					<Form.Control type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Enter email" />
+					<Form.Control type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email address" />
 				</Form.Group>
 
 				<Form.Group controlId="signInPassword">
 					<Form.Control type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
 				</Form.Group>
 
-				<Button variant="primary" type="submit">
+				<Button variant="primary" type="submit" onClick={this.handleSubmit}>
 					Sign In
   			</Button>
 				<Button variant="primary" onClick={signInWithGoogle}>
@@ -68,11 +62,4 @@ class SignIn extends React.Component {
 }
 
 
-
-const mapDispatchToProps = dispatch => (
-	{ //action creators
-		setCurrentUser: user => dispatch(setCurrentUser(user))
-	}
-)
-
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;

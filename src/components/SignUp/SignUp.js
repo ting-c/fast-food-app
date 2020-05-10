@@ -61,7 +61,7 @@ class SignUp extends React.Component {
         </Form.Group>
 
         <Form.Group controlId="signUpEmail">
-          <Form.Control type="email" name="email" onChange={this.handleChange} value={email} placeholder="Enter email" />
+          <Form.Control type="email" name="email" onChange={this.handleChange} value={email} placeholder="Email address" />
         </Form.Group>
 
         <Form.Group controlId="signUpPassword">
