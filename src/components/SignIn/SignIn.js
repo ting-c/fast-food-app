@@ -1,9 +1,12 @@
 import React from 'react';
 import './SignIn.styles.scss';
 
-import { auth, provider, firestore } from '../../firebase/firebase';
+import { auth, firestore } from '../../firebase/firebase';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/actions/userActions';
+import { signInWithGoogle } from '../../firebase/firebase';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class SignIn extends React.Component {
 	constructor(props) {
@@ -34,30 +37,7 @@ class SignIn extends React.Component {
 		})
 	};
 
-	handleSubmit = (event, props) => {
-		event.preventDefault();
-		const isGoogleSignIn = event.target.value === "Sign in with google";
-		if (isGoogleSignIn) {
-			auth
-				.signInWithPopup(provider)
-				.catch((error) => {
-					alert(`There is an error with the login: ${error.message}`);
-				})
-				.then(() => {
-					this.storeUserDetails();
-				})
-				.then(this.props.setCurrentUser(auth.currentUser));
-		} else {
-			const { email, password } = this.state;
-			auth
-				.signInWithEmailAndPassword(email, password)
-				.catch((error) => {
-					alert(`There is an error with the login: ${error.message}`);
-				})
-				.then(this.props.setCurrentUser(auth.currentUser))
-		}
-	};
-
+	
 	handleChange = (event) => {
 		const { name, value } = event.target;
 		this.setState({
@@ -67,36 +47,22 @@ class SignIn extends React.Component {
 
 	render() {
 		return (
-			<div className="SignIn">
-				<h2>Sign In</h2>
+			<Form>
+				<Form.Group controlId="signInEmail">
+					<Form.Control type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Enter email" />
+				</Form.Group>
 
-				<form onSubmit={this.handleSubmit}>
-					<label>Email</label>
-					<input
-						type="email"
-						name="email"
-						value={this.state.email}
-						onChange={this.handleChange}
-						required
-					/>
-					<br />
-					<label>Password</label>
-					<input
-						type="password"
-						name="password"
-						value={this.state.password}
-						onChange={this.handleChange}
-						required
-					/>
-					<br />
-					<input type="submit" value="Sign in" />
-					<br />
-					<input
-						onClick={this.handleSubmit}
-						defaultValue="Sign in with google"
-					/>
-				</form>
-			</div>
+				<Form.Group controlId="signInPassword">
+					<Form.Control type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
+				</Form.Group>
+
+				<Button variant="primary" type="submit">
+					Sign In
+  			</Button>
+				<Button variant="primary" onClick={signInWithGoogle}>
+					Sign In With Google
+  			</Button>
+			</Form>
 		);
 	}
 }

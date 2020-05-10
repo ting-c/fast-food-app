@@ -1,47 +1,44 @@
 import React from 'react';
-import './Navbar.styles.scss';
+import './NavBar.styles.scss';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase';
 import Logo from '../../img/Logo.png';
-import { signOutUser } from '../../redux/actions/userActions'
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
-const Navbar = ({currentUser, signOutUser}) => {
-  const signOut = () => {
-    auth.signOut().then(
-      signOutUser()
-    )
-  }
-
+const NavBar = ({ currentUser }) => {
+  
   return (
-    <div className="navbar">
-      <div className="logo-box">
-        <Link to='/'>
-          <img className="logo" src={Logo} alt="logo" />
-        </Link>
-      </div>
-        {
-          currentUser ? ( 
-          <div onClick={() => signOut()}>Sign Out</div> ) : (
-          <Link to="/signin">
-            <div>Sign In</div>
-          </Link> ) 
-        }
-    </div>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">
+        <img className="logo" src={Logo} alt="logo" />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav href="#home">
+            { currentUser ? (
+              <div>
+                <Nav.Link href="#" onClick={() => auth.signOut()}>
+                  Sign Out
+                </Nav.Link>
+              <NavDropdown title="Cart" id="cart-dropdown">
+                <NavDropdown.Item href="#">Item</NavDropdown.Item>
+              </NavDropdown>
+              </div>
+                 ) : (
+                <Nav.Link href="/signin">
+                  Sign In
+                </Nav.Link> )
+            }
+          </Nav>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   )
 };
 
 
-const mapStateToProps = (state) => {
-  return  { currentUser: state.user.currentUser }
-}
-
-// call auth.signOut then call SIGN_OUT_USER using dispatch
-const mapDispatchToProps = dispatch => (
-  { //action creators
-    signOutUser: () => dispatch(signOutUser())
-  }
-)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect()(NavBar);

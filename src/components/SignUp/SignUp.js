@@ -1,91 +1,82 @@
 import React from 'react';
 import './SignUp.styles.scss';
 
-import { auth, firestore } from "../../firebase/firebase";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { auth, createUserProfileDoc } from '../../firebase/firebase';
 
 class SignUp extends React.Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
 
     this.state = {
       name : '',
       email : '',
-      password : ''
+      password : '',
+      confirmPassword: ''
     }
-  }
+  } 
 
-  storeUserDetails = () => {
-    const {name, email} = this.state;
-    auth.onAuthStateChanged( user => {
-      if (user) {
-        // user is signed in
-        const {uid} = user;
-        // create a single document using the uid 
-        firestore.collection("users").doc(uid).set({
-          name : name,
-					email : email
-        })
-        .catch(error => {
-          console.error('error: ', error)
-        })
-      } else {
-        // user is signed out
-      }
-    })
-  }
-
-  handleSubmit = (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(this.storeUserDetails)
-    .catch(error => {
-      alert(`There was an error : ${error.code}`);
-      return
-    })    
 
+    const { name, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match, please enter the same passwords");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+
+      // pass in name from state as user object from auth.createUser.. doesn't have name property
+      await createUserProfileDoc(user, { name });
+
+      // reset form
+      this.setState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name] : value //computed property names
-    })
+      [name] : value 
+    });
   }
 
   render(){
+    const { name, email, password, confirmPassword } = this.state;
     return (
-			<div className="SignUp">
-				<h2>Sign Up</h2>
+      <Form className='signup'>
+        <Form.Group controlId="signUpName">
+          <Form.Control type="name" name="name" onChange={this.handleChange} value={name} placeholder="Full Name" />
+        </Form.Group>
 
-				<form onSubmit={this.handleSubmit}>
-					<label>Full Name</label>
-					<input
-						type="name"
-						name="name"
-						value={this.state.name}
-						onChange={this.handleChange}
-						required /> <br/>
+        <Form.Group controlId="signUpEmail">
+          <Form.Control type="email" name="email" onChange={this.handleChange} value={email} placeholder="Enter email" />
+        </Form.Group>
 
-					<label>Email</label>
-					<input
-						type="email"
-						name="email"
-						value={this.state.email}
-						onChange={this.handleChange}
-						required />	<br />
+        <Form.Group controlId="signUpPassword">
+          <Form.Control type="password" name="password" onChange={this.handleChange} value={password} placeholder="Password" />
+        </Form.Group>
 
-					<label>Password</label>
-					<input
-						type="password"
-						name="password"
-						value={this.state.password}
-						onChange={this.handleChange}
-						required />	<br />
+        <Form.Group controlId="confirmPassword">
+          <Form.Control type="password" name="confirmPassword" onChange={this.handleChange} value={confirmPassword} placeholder="Confirm Password" />
+        </Form.Group>
 
-					<input type="submit" value="Sign up" />
-				</form>
-			</div>
+        <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+          Sign Up
+  			</Button>
+
+      </Form>
 		);
   }
 }
