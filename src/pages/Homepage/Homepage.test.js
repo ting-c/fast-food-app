@@ -1,29 +1,33 @@
 import React from 'react';
-import Homepage from './Homepage'
-import Navbar from '../../components/Navbar/Navbar'
-import Button from "../../components/Button/Button";
+import Homepage from './Homepage';
 
-import {configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
- 
-configure({ adapter: new Adapter() });
+import { shallow } from "enzyme";
 
-describe("Testing Homepage component", () => {
+const setUp = (props={}) => {
+  const component = shallow(<Homepage {...props} />);
+  return component;
+}
 
-  test('render Navbar', () => {
-    const wrapper = shallow(<Homepage />);
-    expect(wrapper.contains(<Navbar/>)).toEqual(true);
+describe("Homepage component", () => {
+
+  let component;
+  beforeEach(() => {
+    component = setUp();
+  })
+  
+  it("Should render without errors", () => {
+    const wrapper = component.find(`[data-test='HomepageComponent']`);
+    expect(wrapper.length).toBe(1);
   });
-  test('render button-group', () => {
-    const wrapper = shallow(<Homepage />);
-    expect(
-			wrapper.containsAllMatchingElements(
-        [
-          <Button name="Delivery" />,
-          <Button name="Menu" />,
-          <Button name="Opening Times" />
-        ]        
-			)
-		).toEqual(true);
+
+  it("Should render a header", () => {
+    const wrapper = component.find(`[data-test='HeaderComponent']`);
+    expect(wrapper.length).toBe(1);
   });
+
+  it("Should render a button-group", () => {
+    const wrapper = component.find(`[data-test='ButtonGroupComponent']`);
+    expect(wrapper.length).toBe(1);
+  });
+
 });
