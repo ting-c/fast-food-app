@@ -2,13 +2,14 @@ import React from 'react';
 import Homepage from './Homepage';
 
 import { shallow } from "enzyme";
+import { findByTestAttr } from '../../../testingUtils';
 
 const setUp = (props={}) => {
   const component = shallow(<Homepage {...props} />);
   return component;
-}
+};
 
-describe("Homepage component", () => {
+describe("Homepage Component", () => {
 
   let component;
   beforeEach(() => {
@@ -16,17 +17,17 @@ describe("Homepage component", () => {
   })
   
   it("Should render without errors", () => {
-    const wrapper = component.find(`[data-test='HomepageComponent']`);
+    const wrapper = findByTestAttr(component, 'HomepageComponent');
     expect(wrapper.length).toBe(1);
   });
 
   it("Should render a header", () => {
-    const wrapper = component.find(`[data-test='HeaderComponent']`);
+    const wrapper = findByTestAttr(component, "HeaderComponent");
     expect(wrapper.length).toBe(1);
   });
 
   it("Should render a button-group", () => {
-    const wrapper = component.find(`[data-test='ButtonGroupComponent']`);
+    const wrapper = findByTestAttr(component, "ButtonGroupComponent");
     expect(wrapper.length).toBe(1);
   });
 

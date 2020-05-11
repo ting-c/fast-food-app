@@ -20,7 +20,7 @@ const NavBar = ({ currentUser }) => {
         <Nav className="mr-auto">
           <Nav href="#home">
             { currentUser ? (
-              <div>
+              <div data-test='SignedInLinks'>
                 <Nav.Link href="#" onClick={() => auth.signOut()}>
                   Sign Out
                 </Nav.Link>
@@ -28,10 +28,13 @@ const NavBar = ({ currentUser }) => {
                 <NavDropdown.Item href="#">Item</NavDropdown.Item>
               </NavDropdown>
               </div>
-                 ) : (
-                <Nav.Link href="/signin">
-                  Sign In
-                </Nav.Link> )
+              ) : (
+                <div data-test='SignedOutLinks'>
+                  <Nav.Link href="/signin">
+                    Sign In
+                  </Nav.Link> 
+                </div> 
+              )
             }
           </Nav>
         </Nav>
