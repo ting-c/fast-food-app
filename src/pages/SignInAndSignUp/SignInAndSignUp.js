@@ -9,10 +9,10 @@ import Tab from 'react-bootstrap/Tab';
 const SignInAndSignUp = () => (
     <Tabs className='signInAndSignUp'>
       <Tab eventKey="signin" title="Sign In">
-        <SignIn />
+        <SignIn data-test='signin'/>
       </Tab>
       <Tab eventKey="signup" title="Sign Up">
-        <SignUp />
+        <SignUp data-test='signup'/>
       </Tab>
     </Tabs>
     
