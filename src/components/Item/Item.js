@@ -6,8 +6,10 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Alert from 'react-bootstrap/Alert';
 
+import PropTypes from 'prop-types';
+
 const Item = ({ name, price, imageUrl }) => (
-  <Card className='h-100 shadow-sm bg-white rounded' style={{ width: '14rem' }}>
+  <Card className='h-100 shadow-sm bg-white rounded' style={{ width: '14rem' }} data-test='ItemComponent'>
     
     <Card.Img variant="top" src={imageUrl} width='50' height='200' />
     <Card.Body className='d-flex flex-column'>
@@ -20,11 +22,16 @@ const Item = ({ name, price, imageUrl }) => (
         <Alert>0</Alert>
         <Button variant='outline-primary'>+</Button>
         <Button variant='outline-primary'>-</Button>
-      </ButtonGroup>
-      
+      </ButtonGroup>      
     </Card.Body>
   
   </Card>
 );
+
+Item.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  imageUrl: PropTypes.string.isRequired
+}
 
 export default Item;
