@@ -13,16 +13,6 @@ const setUp = (props={}) => {
 
 describe('Header Component', () => {
 
-  let component;
-  beforeEach(() => {
-    component = setUp();
-  });
-
-  it('Should render without errors', () => {
-    const wrapper = findByTestAttr(component, 'HeaderComponent');
-    expect(wrapper.length).toBe(1);
-  });
-
   describe("Checking PropTypes", () => {
     it("Should not throw a warning", () => {
       const expectedProps = {
@@ -33,6 +23,21 @@ describe('Header Component', () => {
       expect(propsErr).toBeUndefined();
     });
   });
+
+  describe('Have props', () => {
+    let component;
+    beforeEach(() => {
+      const props = {
+				header: "Test Header",
+			};
+      component = setUp(props);
+    });
+
+    it("Should render without errors", () => {
+      const wrapper = findByTestAttr(component, "HeaderComponent");
+      expect(wrapper.length).toBe(1);
+    });
+  })
 
 });
 
