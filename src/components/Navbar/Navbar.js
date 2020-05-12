@@ -6,6 +6,7 @@ import Logo from '../../img/Logo.png';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import PropTypes from 'prop-types';
 
 
 const NavBar = ({ currentUser }) => {
@@ -24,9 +25,9 @@ const NavBar = ({ currentUser }) => {
                 <Nav.Link href="#" onClick={() => auth.signOut()}>
                   Sign Out
                 </Nav.Link>
-              <NavDropdown title="Cart" id="cart-dropdown">
-                <NavDropdown.Item href="#">Item</NavDropdown.Item>
-              </NavDropdown>
+                <NavDropdown title="Cart" id="cart-dropdown">
+                  <NavDropdown.Item href="#">Item</NavDropdown.Item>
+                </NavDropdown>
               </div>
               ) : (
                 <div data-test='SignedOutLinks'>
@@ -43,8 +44,14 @@ const NavBar = ({ currentUser }) => {
   )
 };
 
+NavBar.propTypes = {
+	currentUser: PropTypes.object
+};
+
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 })
 
+
+export { NavBar };
 export default connect(mapStateToProps)(NavBar);
