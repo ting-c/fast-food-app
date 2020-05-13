@@ -10,7 +10,7 @@ const Menu = () => {
   )
 
   return (
-    <div className='Menu'>
+    <div className='MenuPage' data-test='MenuPageComponent'>
       <Container className='m-3'>
         <Row className='justify-content-around align-content-between flex-wrap p-3'>
           { menuList }

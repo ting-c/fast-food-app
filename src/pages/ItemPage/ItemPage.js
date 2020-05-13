@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Item from '../../components/Item/Item';
 import items from '../../items-store/foodItems';
 import Container from 'react-bootstrap/Container';
@@ -14,7 +13,7 @@ const ItemPage = (props) => {
     });
     
   return (
-		<div className='Menu'>
+		<div className='ItemPage' data-test='ItemPageComponent'>
 			<Container className='m-3'>
 				<Row className='justify-content-around align-content-between flex-wrap p-3 m-1'>
 					{itemList}
