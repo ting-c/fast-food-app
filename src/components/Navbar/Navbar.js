@@ -25,6 +25,9 @@ const NavBar = ({ currentUser }) => {
                 <Nav.Link href="#" onClick={() => auth.signOut()}>
                   Sign Out
                 </Nav.Link>
+                <Nav.Link href="/userprofile" >
+                  Profile
+                </Nav.Link>
                 <NavDropdown title="Cart" id="cart-dropdown">
                   <NavDropdown.Item href="#">Item</NavDropdown.Item>
                 </NavDropdown>

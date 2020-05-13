@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 
 // receive props from redux then display user details
 const UserProfile = ({currentUser}) => {
-  return (
-    <div>
-
-    </div>
+  return (    
+      <div>
+        User Profile
+      </div>    
   )
 };
+
 
 const mapStateToProps = (state) => (
   {
