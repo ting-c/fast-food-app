@@ -1,0 +1,21 @@
+.CartItem{
+  display: flex;
+
+  .ItemImage {
+    max-width: 50px;
+    max-height: 50px;
+    background-size: 50 x 50;
+  }
+
+  .ItemDetails {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 15px;
+
+    .name{
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+  }
+
+}
