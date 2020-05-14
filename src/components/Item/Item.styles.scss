@@ -1,0 +1,59 @@
+.Item {
+  margin: 10px;
+  text-transform: capitalize;
+  font-size: 5px;
+  color: rgb(39, 31, 31);
+  background-image: linear-gradient(to bottom right, white, rgba(233, 233, 233, 0.788));
+  height: 100%;
+  width: 14rem;
+
+  .Body {
+    display: flex;
+    flex-direction: column;
+
+    .Title {
+      font-size: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    };
+
+    .DisplayCount {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .ButtonGroup {
+
+        Button{
+          background-color: rgb(204, 59, 33);
+          border: none;
+          width:50px;
+          margin: 0;
+          font-size: 16px;
+        };
+
+        #minus {
+          font-size: 22px;
+        }
+
+      };
+
+      .ItemCount {
+        font-size: 18px;
+        background-color: white;
+        height: 45px;
+        width: 45px;
+        text-align: center;
+        box-shadow: 1px 1px rgba(128, 128, 128, 0.253);
+        border-radius: 4px;
+        padding: 5px 0;
+      };
+
+    }
+
+
+  }
+
+
+}

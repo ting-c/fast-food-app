@@ -11,14 +11,12 @@ const ItemPage = (props) => {
 			return <Item key={item.id} item={item} />;
     });
     
-  return (
-		<div className='ItemPage' data-test='ItemPageComponent'>
-			<Container className='m-3'>
+  return (		
+			<Container className='ItemPage' data-test='ItemPageComponent'>
 				<Row className='justify-content-around align-content-between flex-wrap p-3 m-1'>
 					{itemList}
 				</Row>
-			</Container>
-		</div>
+			</Container>		
 	)
 };
 

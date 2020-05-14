@@ -11,24 +11,23 @@ import { addItem } from './../../redux/actions/cartActions';
 const Item = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
   return (
-    <Card className='h-100 shadow-sm bg-white rounded' style={{ width: '14rem' }} data-test='ItemComponent'>
-      
-      <Card.Img variant="top" src={imageUrl} width='50' height='200' />
-      <Card.Body className='d-flex flex-column'>
-        <div className='d-flex mb-2 justify-content-between'>
-          <Card.Title className='mb-0 font-weight-bold'>
-            {`${name}  -----  ${price}`}
-          </Card.Title>
-        </div>
-        <ButtonGroup>
-          <Alert>0</Alert>
-          <Button variant='outline-primary' onClick={() => addItem(item)}>+</Button>
-          <Button variant='outline-primary'>-</Button>
-        </ButtonGroup>      
-      </Card.Body>
-    
-    </Card>
-)};
+		<Card className="Item shadow-sm rounded" data-test="ItemComponent">
+			<Card.Img variant="top" src={imageUrl} width="50" height="200" />
+			<Card.Body className="Body">
+				<Card.Title className="Title font-weight-bold">
+					<div className="Name">{name}</div>
+					<div className="Price">{`£ ${price}`}</div>
+				</Card.Title>
+				<div className="DisplayCount">
+					<span className="ItemCount">0</span>
+					<ButtonGroup className="ButtonGroup">
+						<Button onClick={() => addItem(item)}>+</Button>
+						<Button id="minus">-</Button>
+					</ButtonGroup>
+				</div>
+			</Card.Body>
+		</Card>
+	);};
 
 Item.propTypes = {
   name: PropTypes.string.isRequired,

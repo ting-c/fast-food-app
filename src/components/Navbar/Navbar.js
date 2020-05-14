@@ -9,6 +9,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import PropTypes from 'prop-types';
 import CartItem from './../CartItem/CartItem';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 const NavBar = ({ currentUser, cartItems }) => {
   const totalItems = cartItems.reduce( (acc, item) => {
@@ -33,14 +34,16 @@ const NavBar = ({ currentUser, cartItems }) => {
 								<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
 									<NavDropdown.Item>
 										<ListGroup as="ul">
-											{cartItems.map( cartItem => (
+											{cartItems.map((cartItem) => (
 												<ListGroup.Item as="li">
-                          <CartItem key={cartItem.id} {...cartItem} />
-                        </ListGroup.Item>
+													<CartItem key={cartItem.id} {...cartItem} />
+												</ListGroup.Item>
 											))}
 										</ListGroup>
 									</NavDropdown.Item>
-									<NavDropdown.Item>Checkout</NavDropdown.Item>
+									<NavDropdown.Item>
+										<Button variant="primary">Checkout</Button>
+									</NavDropdown.Item>
 								</NavDropdown>
 							</div>
 						) : (

@@ -11,7 +11,7 @@ const Menu = () => {
 
   return (
     <div className='MenuPage' data-test='MenuPageComponent'>
-      <Container className='m-3'>
+      <Container className='Container'>
         <Row className='justify-content-around align-content-between flex-wrap p-3'>
           { menuList }
         </Row>

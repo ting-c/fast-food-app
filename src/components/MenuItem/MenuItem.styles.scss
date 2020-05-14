@@ -1,0 +1,21 @@
+.MenuItem {
+  margin: 10px;
+  background-image: linear-gradient(to bottom right, white, rgba(233, 233, 233, 0.788));
+  text-align: center;
+  
+  .MenuItemLink {
+    text-transform: uppercase;
+    color: rgb(63, 53, 53);
+    
+
+    &:hover {
+    text-decoration: none;
+    }
+
+    .Title {
+      text-align: center;
+    }
+
+  }
+
+}
