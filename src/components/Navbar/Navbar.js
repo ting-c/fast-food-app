@@ -29,7 +29,8 @@ const NavBar = ({ currentUser }) => {
                   Profile
                 </Nav.Link>
                 <NavDropdown title="Cart" id="cart-dropdown">
-                  <NavDropdown.Item href="#">Item</NavDropdown.Item>
+                  <NavDropdown.Item >Item</NavDropdown.Item>
+                  <NavDropdown.Item >Checkout</NavDropdown.Item>
                 </NavDropdown>
               </div>
               ) : (

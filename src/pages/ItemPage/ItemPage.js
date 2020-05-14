@@ -8,8 +8,7 @@ const ItemPage = (props) => {
 	const itemList = items
 		.filter((item) => item.section === props.match.params.menuId)
 		.map((item) => {
-			const { name, ...otherProps } = item;
-			return <Item name={name} key={name} {...otherProps} />;
+			return <Item key={item.id} item={item} />;
     });
     
   return (
