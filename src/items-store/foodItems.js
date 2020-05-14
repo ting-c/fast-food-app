@@ -41,7 +41,7 @@ const foodItems = [
 	},
 	{
 		id: 4,
-		section: "doughnut",
+		section: "doughnuts",
 		name: "chocolate doughnut",
 		price: "15",
 		imageUrl:
@@ -49,7 +49,7 @@ const foodItems = [
 	},
 	{
 		id: 5,
-		section: "doughnut",
+		section: "doughnuts",
 		name: "cookies and cream doughnut",
 		price: "15",
 		imageUrl:
