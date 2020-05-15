@@ -16,6 +16,13 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      .Name {
+        width: 70%;
+      }
+      .Price {
+        width: 20%;
+      }   
     };
 
     .DisplayCount {
