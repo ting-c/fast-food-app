@@ -1,7 +1,7 @@
 import React from 'react';
 import { findByTestAttr, checkProps } from './../../../testingUtils';
 import { shallow } from 'enzyme';
-import Item from './Item';
+import { Item } from './Item';
 
 const setUp = (props={}) => {
   const component = shallow(<Item {...props}/>);
@@ -11,9 +11,10 @@ const setUp = (props={}) => {
 describe('Item Component', () => {
 
   const expectedProps = {
-    name: "Testing Name",
-    price: 123,
-    imageUrl: "http://testingUrl.com",
+    item: {},
+    addItem: {},
+    deleteItem: {},
+    cartItem: {}
   };
   
   describe('Checking Proptypes', () => {

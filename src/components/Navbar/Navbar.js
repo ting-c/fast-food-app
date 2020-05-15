@@ -33,11 +33,11 @@ const NavBar = ({ currentUser, cartItems, totalItems }) => {
 								<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
 									<NavDropdown.Item>
 											<ListGroup as="ul">
-												{ cartItems.map( cartItem => (
+												{ cartItems ? cartItems.map( cartItem => (
 														<ListGroup.Item as="li" key={cartItem.id}>
 															<CartItem {...cartItem} />
 														</ListGroup.Item>
-												)) }
+												)) : null}
 											</ListGroup>
 									</NavDropdown.Item>
 									<NavDropdown.Item>

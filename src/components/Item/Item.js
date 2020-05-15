@@ -10,8 +10,8 @@ import { deleteItem } from './../../redux/actions/cartActions';
 import { cartItemsSelector } from './../../redux/selectors/cartSelectors';
 
 const Item = ({ item, addItem, deleteItem, cartItems }) => {
-  const { name, price, imageUrl } = item;
-  const itemIsInCart = item ? 
+	const { name, price, imageUrl } = item;
+  const itemIsInCart = cartItems ? 
     cartItems.find(cartItem => cartItem.id === item.id) :
     null;
   const itemCount = itemIsInCart ? itemIsInCart.quantity : 0 ; 
@@ -37,9 +37,11 @@ const Item = ({ item, addItem, deleteItem, cartItems }) => {
 };
 
 Item.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string.isRequired
+  item: PropTypes.shape({
+		name: PropTypes.string,
+		price: PropTypes.number,
+		imageUrl: PropTypes.string
+	})
 }
 
 const mapStateToProps = state => ({
@@ -51,4 +53,5 @@ const mapDispatchToProps = dispatch => ({
   deleteItem: item => dispatch(deleteItem(item)),
 });
 
+export { Item };
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
