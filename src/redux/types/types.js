@@ -3,5 +3,6 @@ export const UserActionTypes = {
 }
 
 export const CartActionTypes = {
-  ADD_ITEM: 'ADD_ITEM'
+  ADD_ITEM: 'ADD_ITEM',
+  DELETE_ITEM: 'DELETE_ITEM',
 }

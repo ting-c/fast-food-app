@@ -12,9 +12,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
 const NavBar = ({ currentUser, cartItems }) => {
-  const totalItems = cartItems.reduce( (acc, item) => {
-    return acc + item.quantity 
-  }, 0 );
+
+	const totalItems = cartItems.reduce( (acc, item) => {
+		return acc + item.quantity 
+	}, 0 );
 
   return (
 		<Navbar bg="light" expand="lg">
@@ -33,13 +34,13 @@ const NavBar = ({ currentUser, cartItems }) => {
 								<Nav.Link href="/userprofile">Profile</Nav.Link>
 								<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
 									<NavDropdown.Item>
-										<ListGroup as="ul">
-											{cartItems.map((cartItem) => (
-												<ListGroup.Item as="li" key={cartItem.id}>
-													<CartItem {...cartItem} />
-												</ListGroup.Item>
-											))}
-										</ListGroup>
+											<ListGroup as="ul">
+												{ cartItems.map( cartItem => (
+														<ListGroup.Item as="li" key={cartItem.id}>
+															<CartItem {...cartItem} />
+														</ListGroup.Item>
+												)) }
+											</ListGroup>
 									</NavDropdown.Item>
 									<NavDropdown.Item>
 										<Button variant="success">Checkout</Button>

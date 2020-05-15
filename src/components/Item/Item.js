@@ -6,10 +6,13 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem } from './../../redux/actions/cartActions';
+import { deleteItem } from './../../redux/actions/cartActions';
 
-const Item = ({ item, addItem, cartItems }) => {
+const Item = ({ item, addItem, deleteItem, cartItems }) => {
   const { name, price, imageUrl } = item;
-  const itemIsInCart = cartItems.find(cartItem => cartItem.id === item.id);
+  const itemIsInCart = item ? 
+    cartItems.find(cartItem => cartItem.id === item.id) :
+    null;
   const itemCount = itemIsInCart ? itemIsInCart.quantity : 0 ; 
 
   return (
@@ -24,12 +27,12 @@ const Item = ({ item, addItem, cartItems }) => {
 					<span className="ItemCount">{itemCount}</span>
 					<ButtonGroup className="ButtonGroup">
 						<Button onClick={() => addItem(item)}>+</Button>
-						<Button id="minus">-</Button>
+						<Button onClick={() => deleteItem(item)} id="minus">-</Button>
 					</ButtonGroup>
 				</div>
 			</Card.Body>
 		</Card>
-  );
+	);
 };
 
 Item.propTypes = {
@@ -43,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+  addItem: item => dispatch(addItem(item)),
+  deleteItem: item => dispatch(deleteItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
