@@ -10,12 +10,10 @@ import PropTypes from 'prop-types';
 import CartItem from './../CartItem/CartItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { cartItemsSelector, totalItemsSelector } from '../../redux/selectors/cartSelectors';
+import { currentUserSelector } from '../../redux/selectors/userSelectors';
 
-const NavBar = ({ currentUser, cartItems }) => {
-
-	const totalItems = cartItems.reduce( (acc, item) => {
-		return acc + item.quantity 
-	}, 0 );
+const NavBar = ({ currentUser, cartItems, totalItems }) => {
 
   return (
 		<Navbar bg="light" expand="lg">
@@ -64,8 +62,9 @@ NavBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  cartItems: state.cart.cartItems
+  currentUser: currentUserSelector(state),
+	cartItems: cartItemsSelector(state),
+	totalItems: totalItemsSelector(state)
 })
 
 

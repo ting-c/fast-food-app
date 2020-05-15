@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem } from './../../redux/actions/cartActions';
 import { deleteItem } from './../../redux/actions/cartActions';
+import { cartItemsSelector } from './../../redux/selectors/cartSelectors';
 
 const Item = ({ item, addItem, deleteItem, cartItems }) => {
   const { name, price, imageUrl } = item;
@@ -42,7 +43,7 @@ Item.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  cartItems: state.cart.cartItems
+  cartItems: cartItemsSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({

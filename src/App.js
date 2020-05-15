@@ -3,8 +3,6 @@ import './App.scss';
 import { Route, Redirect } from 'react-router-dom';
 import { auth, createUserProfileDoc } from './firebase/firebase';
 import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/actions/userActions';
-
 import NavBar from './components/NavBar/NavBar';
 import Homepage from './pages/Homepage/Homepage';
 import Menu from './pages/MenuPage/MenuPage';
@@ -12,6 +10,8 @@ import OpeningTimes from './pages/OpeningTimes/OpeningTimes';
 import ItemPage from './pages/ItemPage/ItemPage';
 import SignInAndSignUp from './pages/SignInAndSignUp/SignInAndSignUp';
 import UserProfile from './pages/UserProfile/UserProfile';
+import { setCurrentUser } from "./redux/actions/userActions";
+import { currentUserSelector } from "./redux/selectors/userSelectors";
 
 class App extends React.Component {
 
@@ -64,8 +64,8 @@ class App extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ user }) => ({
-	currentUser: user.currentUser
+const mapStateToProps = (state) => ({
+	currentUser: currentUserSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
