@@ -1,12 +1,22 @@
 FAST-FOOD-APP
 
+## General info
+This project is a simple mobile-friendly app for a fast food restaurant where user can interact with. 
+
 This app aims to provide the following features:
-- User authentication - sign in and sign up
-- User can select items and add to cart
-- User can make payment using stripe in test mode
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- User can create new accounts or sign in their with Google account
+- User can add items to cart and delete items from cart
+- User can make payment for order using stripe in test mode
+	
+## Technologies
+Project is created with:
+* React - 16.13.1
+* Redux - 4.0.5
+* BootStrap 4
+* Firebase
+	
+## Setup
+To run this project, install it locally using yarn:
 
 ## Available Scripts
 
