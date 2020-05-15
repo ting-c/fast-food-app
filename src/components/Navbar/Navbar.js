@@ -35,14 +35,14 @@ const NavBar = ({ currentUser, cartItems }) => {
 									<NavDropdown.Item>
 										<ListGroup as="ul">
 											{cartItems.map((cartItem) => (
-												<ListGroup.Item as="li">
-													<CartItem key={cartItem.id} {...cartItem} />
+												<ListGroup.Item as="li" key={cartItem.id}>
+													<CartItem {...cartItem} />
 												</ListGroup.Item>
 											))}
 										</ListGroup>
 									</NavDropdown.Item>
 									<NavDropdown.Item>
-										<Button variant="primary">Checkout</Button>
+										<Button variant="success">Checkout</Button>
 									</NavDropdown.Item>
 								</NavDropdown>
 							</div>
