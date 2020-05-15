@@ -33,15 +33,16 @@ const NavBar = ({ currentUser, cartItems, totalItems }) => {
 								<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
 									<NavDropdown.Item>
 											<ListGroup as="ul">
-												{ cartItems ? cartItems.map( cartItem => (
+												{ cartItems.length ? cartItems.map( cartItem => (
 														<ListGroup.Item as="li" key={cartItem.id}>
 															<CartItem {...cartItem} />
 														</ListGroup.Item>
-												)) : null}
+												)) : <span className='emptyCart'>Your cart is currently empty</span>}
 											</ListGroup>
 									</NavDropdown.Item>
 									<NavDropdown.Item>
-										<Button variant="success">Checkout</Button>
+										{ cartItems.length ? <Button variant="success">Checkout</Button>
+												: null }
 									</NavDropdown.Item>
 								</NavDropdown>
 							</div>
