@@ -1,0 +1,15 @@
+.CheckoutItem {
+  width: 100%;
+  text-align: center;
+  margin: 5px 0;
+  align-items: center;
+  text-transform: capitalize;
+
+  .itemImage {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+}

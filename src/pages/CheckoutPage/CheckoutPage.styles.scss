@@ -1,0 +1,26 @@
+.CheckoutPage {
+  width: 100%;
+  display: grid;
+  font-size: 14px;
+
+  .checkoutHeader {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.527);
+    text-align: center;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .checkoutItem {
+    text-align: center;
+    width: 100%;
+  }
+
+  .divider {
+    border-top:1px solid #e2e2e2;
+  }
+
+  .totalPrice {
+    justify-self: right;
+    margin-right: 10px;
+  }
+}
