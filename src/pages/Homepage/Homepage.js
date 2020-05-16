@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
-const Homepage = () => (
+const Homepage = ({history}) => (
 	<div className="homepage" data-test="HomepageComponent">
 		<Header
 			className="header"
@@ -17,13 +17,13 @@ const Homepage = () => (
 			vertical 
 			data-test="ButtonGroupComponent" 
 			className="button-group">
-			<Button className="button" href="signin" variant="danger">
+			<Button className="signinButton" onClick={() => history.push('/signin')} variant="danger">
 				Delivery
 			</Button>
-			<Button className="button" href="menu" variant="danger">
+			<Button className="menuButton" onClick={() => history.push('/menu')} variant="danger">
 				Menu
 			</Button>
-			<Button className="button" href="openingtimes" variant="danger">
+			<Button className="openingTimesButton" onClick={() => history.push('/openingtimes')} variant="danger">
 				Opening Times
 			</Button>
 		</ButtonGroup>
