@@ -10,7 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import PropTypes from 'prop-types';
 import CartItem from './../CartItem/CartItem';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
+import CheckoutDisplay from './../../components/CheckoutDisplay/CheckoutDisplay';
 import { cartItemsSelector, totalItemsSelector } from '../../redux/selectors/cartSelectors';
 import { currentUserSelector } from '../../redux/selectors/userSelectors';
 
@@ -46,15 +46,7 @@ const NavBar = ({ currentUser, cartItems, totalItems, history }) => {
 												</span>
 											)}
 										</ListGroup>
-										{cartItems.length ? (
-											<Button
-												className="checkoutButton"
-												variant="success"
-												onClick={() => history.push("/checkout")}
-											>
-												Checkout
-											</Button>
-										) : null}
+										<CheckoutDisplay cartItems={cartItems} />
 									</NavDropdown.Item>
 								</NavDropdown>
 							</div>

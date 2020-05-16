@@ -1,0 +1,9 @@
+.checkoutDisplay {
+  display: flex;
+  justify-content: space-between;
+
+  .totalPriceDisplay {
+    margin: 10px;
+    font-weight: 500;
+  }
+}
