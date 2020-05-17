@@ -18,7 +18,7 @@ const Homepage = ({history}) => (
 			data-test="ButtonGroupComponent" 
 			className="button-group">
 			<Button className="signinButton" onClick={() => history.push('/signin')} variant="danger">
-				Delivery
+				Sign In
 			</Button>
 			<Button className="menuButton" onClick={() => history.push('/menu')} variant="danger">
 				Menu
