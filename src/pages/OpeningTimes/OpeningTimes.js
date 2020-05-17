@@ -1,6 +1,6 @@
 import React from 'react';
 import './OpeningTimes.styles.scss';
-import openingTimes from './../../items-store/openingTimes';
+import openingTimes from './../../redux/items-store/openingTimes';
 import Card from 'react-bootstrap/Card';
 
 const OpeningTimes = () => (
