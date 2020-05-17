@@ -1,13 +1,15 @@
 import React from 'react';
-import menuItems from "../../items-store/menuItems";
+import { connect } from 'react-redux';
+import { createStructuredSelector } from "reselect";
+import menuItemsSelector from './../../redux/selectors/menuItemsSelector';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Menu = () => {
+const Menu = ({menuItems}) => {
   const menuList = menuItems.map(({ id, ...otherProps }) =>
     <MenuItem key={id} {...otherProps} />
-  )
+  );
 
   return (
     <div className='MenuPage' data-test='MenuPageComponent'>
@@ -18,6 +20,10 @@ const Menu = () => {
       </Container>
     </div>
   )
-}
+};
 
-export default Menu
+const mapStateToProps = createStructuredSelector({
+  menuItems: menuItemsSelector
+})
+
+export default connect(mapStateToProps)(Menu);

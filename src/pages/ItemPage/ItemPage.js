@@ -1,12 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import {foodItemsSelector} from "../../redux/selectors/foodItemsSelector";
 import Item from '../../components/Item/Item';
-import items from '../../items-store/foodItems';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-const ItemPage = (props) => {
-	const itemList = items
-		.filter((item) => item.section === props.match.params.menuId)
+
+const ItemPage = ({foodItems, match}) => {
+	const itemList = foodItems
+		.filter((item) => item.section === match.params.menuId)
 		.map((item) => {
 			return <Item key={item.id} item={item} />;
     });
@@ -20,4 +23,8 @@ const ItemPage = (props) => {
 	)
 };
 
-export default ItemPage
+const mapStateToProps = createStructuredSelector({
+	foodItems : foodItemsSelector
+});
+
+export default connect(mapStateToProps)(ItemPage);

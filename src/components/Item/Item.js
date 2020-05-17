@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addItem } from './../../redux/actions/cartActions';
 import { deleteItem } from './../../redux/actions/cartActions';
+import { createStructuredSelector } from "reselect";
 import { cartItemsSelector } from './../../redux/selectors/cartSelectors';
 
 const Item = ({ item, addItem, deleteItem, cartItems }) => {
@@ -44,8 +45,8 @@ Item.propTypes = {
 	})
 }
 
-const mapStateToProps = state => ({
-  cartItems: cartItemsSelector(state)
+const mapStateToProps = createStructuredSelector({
+  cartItems: cartItemsSelector
 });
 
 const mapDispatchToProps = dispatch => ({

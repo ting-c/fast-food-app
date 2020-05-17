@@ -1,6 +1,7 @@
 import React from "react";
 import './UserProfile.styles.scss';
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { currentUserSelector } from "../../redux/selectors/userSelectors";
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -48,8 +49,8 @@ const UserProfile = ({ currentUser }) => {
     
 }
 
-const mapStateToProps = state => ({
-	currentUser: currentUserSelector(state)
+const mapStateToProps = createStructuredSelector({
+	currentUser: currentUserSelector
 });
 
 export default connect(mapStateToProps)(UserProfile);

@@ -2,6 +2,7 @@ import React from 'react';
 import './CheckoutDisplay.styles.scss';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from "reselect";
 import { cartItemsSelector } from './../../redux/selectors/cartSelectors';
 import Button from 'react-bootstrap/Button';
 
@@ -28,8 +29,8 @@ const CheckoutDisplay = ({cartItems, history}) => {
   }
 };
 
-const mapStateToProps = state => ({
-  cartItems: cartItemsSelector(state)
+const mapStateToProps = createStructuredSelector({
+  cartItems: cartItemsSelector
 })
 
 export default withRouter(connect(mapStateToProps)(CheckoutDisplay));

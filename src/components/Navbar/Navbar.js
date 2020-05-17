@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import CartItem from './../CartItem/CartItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 import CheckoutDisplay from './../../components/CheckoutDisplay/CheckoutDisplay';
+import { createStructuredSelector } from "reselect";
 import { cartItemsSelector, totalItemsSelector } from '../../redux/selectors/cartSelectors';
 import { currentUserSelector } from '../../redux/selectors/userSelectors';
 
@@ -68,10 +69,10 @@ NavBar.propTypes = {
 	currentUser: PropTypes.object
 };
 
-const mapStateToProps = state => ({
-  currentUser: currentUserSelector(state),
-	cartItems: cartItemsSelector(state),
-	totalItems: totalItemsSelector(state)
+const mapStateToProps = createStructuredSelector({
+  currentUser: currentUserSelector,
+	cartItems: cartItemsSelector,
+	totalItems: totalItemsSelector
 })
 
 
