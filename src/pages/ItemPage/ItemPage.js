@@ -18,10 +18,10 @@ const ItemPage = ({foodItems, match, history}) => {
     
   return (		
 			<Container className='ItemPage' data-test='ItemPageComponent'>
-				<Row className='justify-content-around align-content-between flex-wrap p-3 m-1'>
-					<Button className='backToMenu' onClick={() => history.push('/menu')}>
+				<Row className='menu-row'><Button className='backToMenu' onClick={() => history.push('/menu')}>
 						Menu
-					</Button>
+				</Button></Row>
+				<Row className='Row'>
 					{itemList}
 				</Row>
 			</Container>		
