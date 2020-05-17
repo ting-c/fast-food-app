@@ -25,31 +25,12 @@ const NavBar = ({ currentUser, cartItems, totalItems, history }) => {
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
-					<Nav>
 						{currentUser ? (
 							<div data-test="SignedInLinks">
 								<Nav.Link onClick={() => auth.signOut()}>Sign Out</Nav.Link>
 								<Nav.Link onClick={() => history.push("/userprofile")}>
 									Profile
 								</Nav.Link>
-								<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
-									<NavDropdown.Item>
-										<ListGroup as="ul">
-											{cartItems.length ? (
-												cartItems.map((cartItem) => (
-													<ListGroup.Item as="li" key={cartItem.id}>
-														<CartItem {...cartItem} />
-													</ListGroup.Item>
-												))
-											) : (
-												<span className="emptyCart">
-													Your cart is currently empty
-												</span>
-											)}
-										</ListGroup>
-										<CheckoutDisplay cartItems={cartItems} />
-									</NavDropdown.Item>
-								</NavDropdown>
 							</div>
 						) : (
 							<div data-test="SignedOutLinks">
@@ -58,7 +39,24 @@ const NavBar = ({ currentUser, cartItems, totalItems, history }) => {
 								</Nav.Link>
 							</div>
 						)}
-					</Nav>
+					<NavDropdown title={`Cart (${totalItems})`} id="cart-dropdown">
+						<NavDropdown.Item>
+							<ListGroup as="ul">
+								{cartItems.length ? (
+									cartItems.map((cartItem) => (
+										<ListGroup.Item as="li" key={cartItem.id}>
+											<CartItem {...cartItem} />
+										</ListGroup.Item>
+									))
+								) : (
+									<span className="emptyCart">
+										Your cart is currently empty
+									</span>
+								)}
+							</ListGroup>
+							<CheckoutDisplay cartItems={cartItems} />
+						</NavDropdown.Item>
+					</NavDropdown>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
