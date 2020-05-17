@@ -20,7 +20,7 @@ const CheckoutItem = ({item, addItem, deleteItem}) => {
 				<span className='itemCount'>{quantity}</span>
 				<span className='add' onClick={() => addItem(item)}>{">"}</span>
 			</Col>
-			<Col className="price">{quantity * price}</Col>
+			<Col className="price">{(quantity * price).toFixed(2)}</Col>
 		</Row>
 	);
 };

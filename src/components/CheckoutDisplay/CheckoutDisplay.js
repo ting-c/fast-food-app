@@ -20,7 +20,7 @@ const CheckoutDisplay = ({cartItems, history}) => {
         >
           Checkout
         </Button>
-        <div className='totalPriceDisplay'> Total : £ {totalPrice}</div>
+        <div className='totalPriceDisplay'> Total : £ {totalPrice.toFixed(2)}</div>
       </div>
     );
   } else {

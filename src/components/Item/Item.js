@@ -22,7 +22,7 @@ const Item = ({ item, addItem, deleteItem, cartItems }) => {
 			<Card.Body className="Body">
 				<Card.Title className="Title font-weight-bold">
 					<div className="Name">{name}</div>
-					<div className="Price">{`£ ${price}`}</div>
+					<div className="Price">{`£ ${price.toFixed(2)}`}</div>
 				</Card.Title>
 				<div className="DisplayCount">
 					<span className="ItemCount">{itemCount}</span>

@@ -13,26 +13,24 @@ const CheckoutPage = ({ cartItems }) => {
   }, 0);
 
   return (
-    <Container className="CheckoutPage">
-      <Row className="checkoutHeader">
-        <Col className="checkoutItemImage">Item</Col>
-        <Col className="checkoutDescription" xs={4}>
-          Description
-        </Col>
-        <Col className="checkoutQuantity">Quantity</Col>
-        <Col className="checkoutPrice">Price</Col>
-      </Row>
-      {cartItems.map((item) => (
-        <div className="CheckoutItem">
-          <CheckoutItem item={item} key={item.id} />
-        </div>
-      ))}
-      <div className='divider'></div>
-      <div className='totalPrice'>
-        Total : £ {totalPrice}
-      </div>		
-    </Container>
-)};
+		<Container className="CheckoutPage">
+			<Row className="checkoutHeader">
+				<Col className="checkoutItemImage">Item</Col>
+				<Col className="checkoutDescription" xs={4}>
+					Description
+				</Col>
+				<Col className="checkoutQuantity">Quantity</Col>
+				<Col className="checkoutPrice">Price</Col>
+			</Row>
+			{cartItems.map((item) => (
+				<div className="CheckoutItem">
+					<CheckoutItem item={item} key={item.id} />
+				</div>
+			))}
+			<div className="divider"></div>
+			<div className="totalPrice">Total : £ {totalPrice.toFixed(2)}</div>
+		</Container>
+	);};
 
 const mapStateToProps = state => ({
   cartItems: cartItemsSelector(state)
