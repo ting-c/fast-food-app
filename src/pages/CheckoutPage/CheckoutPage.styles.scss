@@ -1,7 +1,7 @@
 .CheckoutPage {
   width: 100%;
   display: grid;
-  font-size: 14px;
+  font-size: 15px;
 
   .checkoutHeader {
     border-bottom: 1px solid rgba(128, 128, 128, 0.527);
@@ -20,7 +20,22 @@
   }
 
   .totalPrice {
+    margin: 10px 5px 0 0 ;
     justify-self: right;
     margin-right: 10px;
+    font-weight: 500;
+  }
+
+  .StripeButton {
+    margin-top: 5px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+  }
+
+  .testModeMessage {
+    margin-top: 20px;
+    font-weight: 300;
+    color: rgb(129, 14, 14);
   }
 }

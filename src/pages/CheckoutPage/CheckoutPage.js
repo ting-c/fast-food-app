@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CheckoutItem from './../../components/CheckoutItem/CheckoutItem';
+import StripeButton from './../../components/StripeButton/StripeButton';
 
 const CheckoutPage = ({ cartItems }) => { 
   const totalPrice = cartItems.reduce( (total, cartItem) => {
@@ -30,6 +31,11 @@ const CheckoutPage = ({ cartItems }) => {
 			))}
 			<div className="divider"></div>
 			<div className="totalPrice">Total : £ {totalPrice.toFixed(2)}</div>
+			<div className='StripeButton'><StripeButton price={totalPrice}/></div>
+			<div className='testModeMessage'>
+				*Please use the following card number for payments in test mode* <br />
+				4242 4242 4242 4242 
+			</div>
 		</Container>
 	);};
 
