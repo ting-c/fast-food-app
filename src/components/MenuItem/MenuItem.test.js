@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuItem } from './MenuItem';
-import { checkProps, findByTestAttr } from './../../../testingUtils';
+import { checkProps, findByTestAttr } from "./../../testingUtils";
 import { shallow } from 'enzyme';
 
 const setUp = (props={}) => {

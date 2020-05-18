@@ -1,6 +1,6 @@
 import React from "react";
 import { NavBar } from "./NavBar";
-import { checkProps, findByTestAttr } from "./../../../testingUtils";
+import { checkProps, findByTestAttr } from "./../../testingUtils";
 import { shallow } from "enzyme";
 
 const setUp = (props = {}) => {

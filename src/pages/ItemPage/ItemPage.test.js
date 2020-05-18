@@ -1,8 +1,8 @@
 import React from "react";
-import ItemPage from "./ItemPage";
+import { ItemPage } from "./ItemPage";
 
 import { shallow } from "enzyme";
-import { findByTestAttr } from "../../../testingUtils";
+import { findByTestAttr } from "./../../testingUtils";
 
 const setUp = (props = {}) => {
 	const component = shallow(<ItemPage {...props} />);
@@ -16,7 +16,8 @@ describe("Item Page Component", () => {
       params: {
         url: 'testing.com'
       } 
-    }
+		},
+		foodItems: ['item_1', 'item_2']
   }
 
 	let component;

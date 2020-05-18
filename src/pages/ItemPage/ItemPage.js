@@ -11,18 +11,16 @@ import Button from 'react-bootstrap/Button';
 
 
 const ItemPage = ({foodItems, match, history}) => {
-	const itemList = foodItems[match.params.menuId]
-		.map((item) => {
-			return <Item key={item.id} item={item} />;
-    });
     
   return (		
 			<Container className='ItemPage' data-test='ItemPageComponent'>
 				<Row className='menu-row'><Button className='backToMenu' onClick={() => history.push('/menu')}>
-						Menu
+					Menu
 				</Button></Row>
 				<Row className='Row'>
-					{itemList}
+				 { foodItems[match.params.menuId].map( item => (
+					 <Item key={item.id} item={item} />
+					))}
 				</Row>
 			</Container>		
 	)
@@ -31,5 +29,7 @@ const ItemPage = ({foodItems, match, history}) => {
 const mapStateToProps = createStructuredSelector({
 	foodItems : foodItemsSelector
 });
+
+export { ItemPage };
 
 export default withRouter(connect(mapStateToProps)(ItemPage));

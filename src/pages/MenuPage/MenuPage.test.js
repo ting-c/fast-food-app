@@ -2,7 +2,7 @@ import React from "react";
 import MenuPage from "./MenuPage";
 
 import { shallow } from "enzyme";
-import { findByTestAttr } from "../../../testingUtils";
+import { findByTestAttr } from "./../../testingUtils";
 
 const setUp = (props = {}) => {
 	const component = shallow(<MenuPage {...props} />);

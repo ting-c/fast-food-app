@@ -1,6 +1,6 @@
 import React from 'react';
 import SignInAndSignUp from './SignInAndSignUp';
-import { findByTestAttr } from './../../../testingUtils';
+import { findByTestAttr } from "./../../testingUtils";
 import { shallow } from 'enzyme';
 
 const setUp = (props={}) => {

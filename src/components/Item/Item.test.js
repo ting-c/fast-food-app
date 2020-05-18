@@ -1,5 +1,5 @@
 import React from 'react';
-import { findByTestAttr, checkProps } from './../../../testingUtils';
+import { findByTestAttr, checkProps } from './../../testingUtils';
 import { shallow } from 'enzyme';
 import { Item } from './Item';
 
